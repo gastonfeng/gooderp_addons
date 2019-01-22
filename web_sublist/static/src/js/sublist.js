@@ -49,7 +49,7 @@ odoo.define('web.sublist', function(require) {
 
                     self.records.add(records, {silent: true});
 
-                    var containers = {}
+                    var containers = {};
 
                     // 统计需要定义子列表的字段
                     _.each(list.columns, function(column) {
@@ -79,7 +79,7 @@ odoo.define('web.sublist', function(require) {
                                 key: key,
                             }
                         }))
-                    })
+                    });
                     
                     var RELATION_TAG = 'RELATION_SUBLIST_MULTI';
                     utils.async_when.apply(null, deferreds).then(function() {
@@ -93,16 +93,16 @@ odoo.define('web.sublist', function(require) {
                                 record.set(item.key, filter_value);
 
                                 if (filter_value.length > 1) record.set(RELATION_TAG, true);
-                            })                        
-                        })
+                            })
+                        });
                         list.render();
-                    })
+                    });
 
                     return list;
                 });
             });
         },
-    })
+    });
     
     core.list_widget_registry.add('field.relation_sublist', relation_sublist);
 });

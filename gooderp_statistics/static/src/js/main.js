@@ -23,11 +23,11 @@ openerp.gooderp_statistics = function(instance) {
 
         _get_company_data:function() {
             var self = this;
-            if (self.company_data) return $.Deferred().resolve(self.company_data)
+            if (self.company_data) return $.Deferred().resolve(self.company_data);
             return $.when($.get('/get_user_info')).then(function(data) {
                 self.company_data = JSON.parse(data);
                 return self.company_data;
             })
         }
     })
-}
+};

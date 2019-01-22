@@ -38,7 +38,7 @@ FormView.include({
         })
     },
 });
-})
+});
 
 // odoo.warehouse = function(instance) {
 //     instance.web.list.Column.include({

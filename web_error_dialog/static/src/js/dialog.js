@@ -52,4 +52,4 @@ odoo.define('web.gooderp_dialog', function(require) {
             });
         },
     })
-})
+});

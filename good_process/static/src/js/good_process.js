@@ -26,7 +26,7 @@ odoo.define('good.process', function(require) {
                 if (value.display_name == self.session.name) {
                     return value.id
                 }
-            })
+            });
             if (self.view.datarecord.id != undefined) {
                 this.$('.process').remove();
                 this.$('.o_form_input_dropdown').remove();
