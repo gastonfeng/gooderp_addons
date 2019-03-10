@@ -37,7 +37,7 @@ class hire_applicant(models.Model):
     _name = "hire.applicant"
     _description = u"招聘"
     _order = "priority desc, id desc"
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'partner_name'
 
     def _default_stage_id(self):

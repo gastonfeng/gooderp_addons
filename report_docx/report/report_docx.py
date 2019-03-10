@@ -122,23 +122,23 @@ class IterDataModelProxy(object):
 
 
 class ReportDocx(report_sxw):
-    def create(self, cr, uid, ids, data, context=None):
-        env = api.Environment(cr, uid, context)
+    def create(self,  ids, data, context=None):
+        env = api.Environment( context)
         report_obj = env.get('ir.actions.report.xml')
         report_ids = report_obj.search([('report_name', '=', self.name[7:])])
         self.title = report_ids[0].name
         if report_ids[0].report_type == 'docx':
-            return self.create_source_docx(cr, uid, ids, report_ids[0], context)
+            return self.create_source_docx( ids, report_ids[0], context)
 
-        return super(ReportDocx, self).create(cr, uid, ids, data, context)
+        return super(ReportDocx, self).create( ids, data, context)
 
     def generate_temp_file(self, tempname, suffix='docx'):
         return os.path.join(tempname, 'temp_%s_%s.%s' %
                             (os.getpid(), random.randint(1, 10000), suffix))
 
-    def create_source_docx(self, cr, uid, ids, report, context=None):
+    def create_source_docx(self,  ids, report, context=None):
         data = DataModelProxy(self.get_docx_data(
-            cr, uid, ids, report, context))
+             ids, report, context))
         tempname = tempfile.mkdtemp()
         temp_out_file = self.generate_temp_file(tempname)
 
@@ -187,8 +187,8 @@ class ReportDocx(report_sxw):
 
         return temp_out_file_pdf
 
-    def get_docx_data(self, cr, uid, ids, report, context):
-        env = api.Environment(cr, uid, context)
+    def get_docx_data(self,  ids, report, context):
+        env = api.Environment( context)
         # 打印时， 在消息处显示打印人
         message = str((datetime.now()).strftime('%Y-%m-%d %H:%M:%S')) + ' ' + env.user.name + u' 打印了该单据'
         env.get(report.model).message_post(body=message)

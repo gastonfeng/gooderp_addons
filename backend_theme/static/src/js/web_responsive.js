@@ -16,7 +16,7 @@ odoo.define('web_responsive', function(require) {
             //安装主题后这个方法没有用武之地,
             //因为想要用对应的class,导致对应的图片更新给带有这个这个class的的图片都会更新为公司图片
         }
-    })
+    });
 
     Menu.include({
 
@@ -121,7 +121,7 @@ odoo.define('web_responsive', function(require) {
         // It provides handlers to hide drawer when "unfocused"
         handleClickZones: function() {
             //点击后二级菜单隐藏 by 河北-彩云
-            $('#odooMenuBarNav').attr('aria-expanded','false')
+            $('#odooMenuBarNav').attr('aria-expanded', 'false');
             this.$el.drawer('close');
             $('.o_sub_menu_content')
                 .parent()

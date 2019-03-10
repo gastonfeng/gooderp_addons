@@ -74,12 +74,12 @@ odoo.define('warehouse.wave', function(require) {
                 for (var i = 0; i < result.length; i=i+2) {
                     all_print.append($(result[i]));
 
-                    var res_keys = Object.keys(result[i+1]).sort()
-                    var res = {}
+                    var res_keys = Object.keys(result[i + 1]).sort();
+                    var res = {};
                     for (var res_key in res_keys){
                         res[res_keys[res_key]] = result[i+1][res_keys[res_key]]
                     }
-                    JSON.stringify(res)
+                    JSON.stringify(res);
                     // 去掉打印装箱单数据
                     // all_print.append($("<div style='page-break-after:always;'></div>"));
                     // all_print.append($(QWeb.render('temp_detail_info', {'detail_infos': res})));
@@ -93,7 +93,7 @@ odoo.define('warehouse.wave', function(require) {
                     operaSupport: false //表示如果插件也必须支持歌opera浏览器，在这种情况下，它提供了建立一个临时的打印选项卡。默认是true
                 });
             })
-    };
+    }
     core.action_registry.add('warehouse_wave.print_express_menu', WarehouseWave);
 
     function WarehouseWavePackage(parent, action) {
@@ -102,12 +102,12 @@ odoo.define('warehouse.wave', function(require) {
             function(result) {
                 var all_print = $("<div style='page-break-after:always;'></div>");
                 for (var i = 0; i < result.length; i++) {
-                    var res_keys = Object.keys(result[i]).sort()
-                    var res = {}
+                    var res_keys = Object.keys(result[i]).sort();
+                    var res = {};
                     for (var res_key in res_keys){
                         res[res_keys[res_key]] = result[i][res_keys[res_key]]
                     }
-                    JSON.stringify(res)
+                    JSON.stringify(res);
                     all_print.append($(QWeb.render('temp_detail_info', {'detail_infos': res})));
                     all_print.append($("<div style='page-break-after:always;'></div>"));
                 }
@@ -118,6 +118,6 @@ odoo.define('warehouse.wave', function(require) {
                     operaSupport: false //表示如果插件也必须支持歌opera浏览器，在这种情况下，它提供了建立一个临时的打印选项卡。默认是true
                 });
             })
-    };
+    }
     core.action_registry.add('warehouse_wave.print_express_package', WarehouseWavePackage);
-})
+});

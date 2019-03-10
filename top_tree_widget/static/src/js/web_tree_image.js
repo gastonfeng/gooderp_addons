@@ -48,7 +48,7 @@ odoo.define('web.WebTreeImage', function (require) {
                         model:this.model,
                         field: this.id,
                         id: options.id
-                    }
+                    };
                     if (this.resize) {
                         imageArgs.resize = this.resize;
                     }

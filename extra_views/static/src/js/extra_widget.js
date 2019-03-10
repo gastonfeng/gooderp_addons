@@ -63,7 +63,7 @@ odoo.define('ExtraWidget', function(require) {
             var data_pt, j, values, value;
 
             this.data = [];
-            this.labels = []
+            this.labels = [];
             for (var i = 0; i < raw_data.length; i++) {
                 data_pt = raw_data[i].attributes;
                 values = [];
@@ -73,7 +73,7 @@ odoo.define('ExtraWidget', function(require) {
                     if (this.labels.length > j) {
                         this.labels[j].push(values[j])
                     } else {
-                        this.labels.push([])
+                        this.labels.push([]);
                         this.labels[j].push(values[j])
                     }
                 }
@@ -113,7 +113,7 @@ odoo.define('ExtraWidget', function(require) {
         display_views: function() {
             var self = this;
             var myChart = echarts.init(self.$el.parents().find('#main')[0]);
-            var option = self.get_options()
+            var option = self.get_options();
             myChart.setOption(option, true);
             return myChart;
         },
@@ -139,8 +139,8 @@ odoo.define('ExtraWidget', function(require) {
                             'stack': self.context.bar_type && data_row.labels[1] || 'sum',
                             'data': [data_row.value]
                         });
-                    };
-                };
+                    }
+                }
             });
 
         },
@@ -168,7 +168,7 @@ odoo.define('ExtraWidget', function(require) {
                     type: 'value'
                 }],
                 series: self.series_data || [],
-            }
+            };
             return option;
         },
         prepare_pie_data: function() {
@@ -176,7 +176,7 @@ odoo.define('ExtraWidget', function(require) {
             _.each(self.data, function(data_row) {
                 var row_index = self.series_data.find(function(row) {
                     return row.name === data_row.labels[0];
-                })
+                });
                 if (row_index) {
                     row_index.value += data_row.value
                 } else {

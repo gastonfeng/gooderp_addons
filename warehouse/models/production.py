@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from odoo.osv import osv
-from utils import inherits, inherits_after, \
-    create_name, safe_division, create_origin
-import odoo.addons.decimal_precision as dp
 from itertools import islice
+
+import odoo.addons.decimal_precision as dp
+
 from odoo import models, fields, api
 from odoo.exceptions import UserError
+from utils import inherits, create_name, safe_division, create_origin
 
 
 class WhAssembly(models.Model):
@@ -1479,7 +1479,7 @@ class WhDisassembly(models.Model):
         return True
 
 
-class WhBom(osv.osv):
+class WhBom(models.Model):
     _name = 'wh.bom'
     _description = u'物料清单'
 
@@ -1520,7 +1520,7 @@ class WhBom(osv.osv):
                     raise UserError(u'组合件和子件不能相同，产品:%s' % parent_line.goods_id.name)
 
 
-class WhBomLine(osv.osv):
+class WhBomLine(models.Model):
     _name = 'wh.bom.line'
     _description = u'物料清单明细'
 

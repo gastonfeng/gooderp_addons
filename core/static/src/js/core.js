@@ -144,9 +144,9 @@ odoo.define('core.core', function (require) {
         autofocus: function() {
             this._super.apply(this, arguments);
 
-            var input_widgets = $(':input')
+            var input_widgets = $(':input');
             for (var i = 0; i < input_widgets.length; i += 1){
-                var input_widget = input_widgets[i]
+                var input_widget = input_widgets[i];
                 if (input_widget.autofocus) {
                     if (input_widget.focus() !== false) {
                         break;
@@ -191,8 +191,8 @@ odoo.define('core.core', function (require) {
                     self.pivot_color.push(pivot_color_obj);
                  }
             });
-            return this._super.apply(this, arguments);;
-        },
+             return this._super.apply(this, arguments);
+         },
 
         prepare_fields: function (fields) {
             var self = this,
@@ -279,7 +279,7 @@ odoo.define('core.core', function (require) {
                         $cell.css('font-weight', 'bold');
                     }
                     if(this.pivot_color_field.indexOf(this.active_measures[j % nbr_measures])>=0){
-                        var field_index = this.pivot_color_field.indexOf(this.active_measures[j % nbr_measures])
+                        var field_index = this.pivot_color_field.indexOf(this.active_measures[j % nbr_measures]);
                         this.change_color(rows, $cell, i, j, nbr_measures,field_index);
                     }
                     $row.append($cell);
@@ -305,7 +305,7 @@ odoo.define('core.core', function (require) {
             $target.parent().addClass('open');
             if($target.attr('aria-expanded')!=undefined && !$target.attr('aria-expanded')){
                 $target.attr('aria-expanded', true);
-            };
+            }
             var menu_list = $target.parent().find('.oe_secondary_submenu');
             menu_list.show();
         },
@@ -313,10 +313,10 @@ odoo.define('core.core', function (require) {
             var $target = $(e.target);
             $target.parent().removeClass('open');
             var menu_list = $target.parent().find('.oe_secondary_submenu');
-            var dropdown_a = $target.parent().find('.dropdown-toggle')
+            var dropdown_a = $target.parent().find('.dropdown-toggle');
             if(dropdown_a.attr('aria-expanded')!=undefined && $target.attr('aria-expanded')){
                 $target.attr('aria-expanded', false);
-            };
+            }
             menu_list.hide();
         },
         bind_menu: function () {
@@ -337,7 +337,7 @@ odoo.define('core.core', function (require) {
             var warnings = _(this.fields).chain()
                 .filter(function (f) {return !f.is_valid(); })
                 .map(function (f) {
-                    var  field_list = ''
+                    var field_list = '';
                     if((f.field.type=='one2many' || f.field.type=='many2many')){
                         var list =_.map(f.views[0].fields_view.fields,function (value, key_vals) {
                             if(value.required ||(value.__attrs && value.__attrs.required==='1')){
@@ -356,7 +356,7 @@ odoo.define('core.core', function (require) {
                                         if(field===false &&list_keys.indexOf(field_name)>=0){return field_name
                                      }else{return undefined}}).filter(function(value){return value});
                                     if(_.any(field_list_message)){
-                                     break_flag = true
+                                        break_flag = true;
                                      return "   <li>第"+(index)+"行 "+ list_vals[list_keys.indexOf(field_list_message[0])]+"</li>";}
                                 }
                            }).filter(function(value){if(value){return value}});

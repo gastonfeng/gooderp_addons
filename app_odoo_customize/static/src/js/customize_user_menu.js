@@ -114,4 +114,4 @@ odoo.define('app_odoo_customize.customize_user_menu', function (require) {
             });
         }, 2500);
     });
-})
+});

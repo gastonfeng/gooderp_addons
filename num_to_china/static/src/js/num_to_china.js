@@ -9,7 +9,7 @@ var Model = require('web.Model');
 
 var NumberToChina = form_widgets.FieldFloat.extend({
     render_value: function () {
-            var self = this
+        var self = this;
             if (!this.get("effective_readonly")) {
                 this.$el.find('input').val(this.get('value'));
             } else {
@@ -22,4 +22,4 @@ var NumberToChina = form_widgets.FieldFloat.extend({
     });
     core.form_widget_registry
     .add('num_to_china', NumberToChina)
-})
+});
