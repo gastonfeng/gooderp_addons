@@ -24,7 +24,7 @@ var ListView = require('web.ListView');
 var formats = require('web.formats');
 var Model = require('web.DataModel');
 function compute_main_data(rows,export_columns_keys){
-    var export_rows = []
+    var export_rows = [];
 
     $.each(rows, function () {
         var $row = $(this);
@@ -54,11 +54,11 @@ function compute_main_data(rows,export_columns_keys){
                     }
                 } else {
                     if (cell.innerHTML){
-                         var no_tag_and_bank_row = cell.innerHTML.replace(/<\/?[^>]*>/g,'').replace(/[\r\n]/g,"")
+                        var no_tag_and_bank_row = cell.innerHTML.replace(/<\/?[^>]*>/g, '').replace(/[\r\n]/g, "");
                          if((no_tag_and_bank_row.split("                   ")).length>1){
                              var list_result = no_tag_and_bank_row.split("                   ");
                              text =list_result.splice(1,list_result.length).join("\r\n");
-                            };
+                         }
                     }
                     export_row.push(text.trim());
                 }
@@ -69,13 +69,14 @@ function compute_main_data(rows,export_columns_keys){
     });
 
     return export_rows;
-};
-function compute_footer_data(amount,export_columns_keys) {
-    var export_rows = []
+}
+
+    function compute_footer_data(amount, export_columns_keys) {
+        var export_rows = [];
     var footer = 0;
     $.each(amount, function () {
         var $row = $(this);
-        var export_row =  new Array(export_columns_keys.length);;
+        var export_row = new Array(export_columns_keys.length);
         var index = 1;
         $.each(export_columns_keys, function () {
             var cell = $row.find('td').get(index);
@@ -98,9 +99,9 @@ function compute_footer_data(amount,export_columns_keys) {
         }
     });
     return export_rows
-};
+    }
 
-function button_export_action () {
+    function button_export_action() {
     var self = this;
     var view = self;
     var export_columns_keys = [];
@@ -153,7 +154,7 @@ function button_export_action () {
                 for(var i=0;i<data[2];i++){
                     export_rows.splice(i, 0, []);
                 }
-                header[0] =  view.name
+        header[0] = view.name;
 
                 $.blockUI();
                 view.session.get_file({
@@ -168,8 +169,9 @@ function button_export_action () {
                         })
                     }, complete: $.unblockUI});
             });
-        };
-ListView.prototype.defaults.import_enabled = true;
+    }
+
+    ListView.prototype.defaults.import_enabled = true;
 ListView.include({
     render_buttons: function() {
         var self = this;

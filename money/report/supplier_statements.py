@@ -104,52 +104,52 @@ class IrActionReportDocx(models.Model):
 
 
 class ReportDocxPartner(ReportDocx):
-    def create(self, cr, uid, ids, data, context=None):
-        env = api.Environment(cr, uid, context)
+    def create(self,  ids, data, context=None):
+        env = api.Environment( context)
         report_ids = env.get('ir.actions.report.xml').search([('report_name', '=', self.name[7:])])
         self.title = report_ids[0].name
         if report_ids[0].report_name == 'supplier.statements.report':
-            return self.supplier_statement_report(cr, uid, ids, report_ids[0], context=context)
+            return self.supplier_statement_report( ids, report_ids[0], context=context)
         elif report_ids[0].report_name == 'customer.statements.report':
-            return self.customer_statement_report(cr, uid, ids, report_ids[0], context=context)
+            return self.customer_statement_report( ids, report_ids[0], context=context)
 
-        return super(ReportDocxPartner, self).create(cr, uid, ids, data, context)
+        return super(ReportDocxPartner, self).create( ids, data, context)
 
-    def supplier_statement_report(self, cr, uid, ids, report_id, context=None):
-        env = api.Environment(cr, uid, context)
+    def supplier_statement_report(self,  ids, report_id, context=None):
+        env = api.Environment( context)
         records = env.get('supplier.statements.report').search([('partner_id', '=', context.get('partner_id')),
                                                                 ('date', '>=', context.get('from_date')),
                                                                 ('date', '<=', context.get('to_date'))])
         if records:
-            return self.create_source_docx_partner(cr, uid, ids, report_id, records, 0, context)
+            return self.create_source_docx_partner( ids, report_id, records, 0, context)
         else:
             pre_records = env.get('supplier.statements.report').search(
                 [('partner_id', '=', context.get('partner_id')),
                  ('date', '<', context.get('from_date'))], order='id desc')
             if pre_records:
                 init_pay = pre_records[0].balance_amount
-                return self.create_source_docx_partner(cr, uid, ids, report_id, None, init_pay, context)
+                return self.create_source_docx_partner( ids, report_id, None, init_pay, context)
             else:
-                return self.create_source_docx_partner(cr, uid, ids, report_id, None, 0, context)
+                return self.create_source_docx_partner( ids, report_id, None, 0, context)
 
-    def customer_statement_report(self, cr, uid, ids, report_id, context=None):
-        env = api.Environment(cr, uid, context)
+    def customer_statement_report(self,  ids, report_id, context=None):
+        env = api.Environment( context)
         records = env.get('customer.statements.report').search([('partner_id', '=', context.get('partner_id')),
                                                                 ('date', '>=', context.get('from_date')),
                                                                 ('date', '<=', context.get('to_date'))])
         if records:
-            return self.create_source_docx_partner(cr, uid, ids, report_id, records, 0, context)
+            return self.create_source_docx_partner( ids, report_id, records, 0, context)
         else:
             pre_records = env.get('customer.statements.report').search(
                 [('partner_id', '=', context.get('partner_id')),
                  ('date', '<', context.get('from_date'))], order='id desc')
             if pre_records:
                 init_pay = pre_records[0].balance_amount
-                return self.create_source_docx_partner(cr, uid, ids, report_id, None, init_pay, context)
+                return self.create_source_docx_partner( ids, report_id, None, init_pay, context)
             else:
-                return self.create_source_docx_partner(cr, uid, ids, report_id, None, 0, context)
+                return self.create_source_docx_partner( ids, report_id, None, 0, context)
 
-    def create_source_docx_partner(self, cr, uid, ids, report, records, init_pay, context=None):
+    def create_source_docx_partner(self,  ids, report, records, init_pay, context=None):
         # 2016-11-2 支持了图片
         # 1.导入依赖，python3语法
         # from . import report_helper
@@ -158,7 +158,7 @@ class ReportDocxPartner(ReportDocx):
         temp_out_file = self.generate_temp_file(tempname)
         doc = DocxTemplate(misc.file_open(report.template_file).name)
 
-        env = api.Environment(cr, uid, context)
+        env = api.Environment( context)
         partner = env.get('partner').search([('id', '=', context.get('partner_id'))])
         simple_dict = {'partner_name': partner.name,
                        'from_date': context.get('from_date'),

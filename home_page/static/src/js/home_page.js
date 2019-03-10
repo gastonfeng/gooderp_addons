@@ -35,7 +35,7 @@ odoo.define('home_page', function (require) {
          * */
         get_action_vals: function (vals) {
             vals[1] = vals[1].replace('tree','list');
-            var view_mode_list = vals[1].split(',')
+            var view_mode_list = vals[1].split(',');
             var views = this.constract_views(view_mode_list, vals);
             return {
                 type: 'ir.actions.act_window',
@@ -52,7 +52,7 @@ odoo.define('home_page', function (require) {
          *针对传入的
          */
         constract_views: function (view_mode_list, vals) {
-            var views = []
+            var views = [];
             if(typeof vals[5]=='object'){
                 for(var i=0;i < (vals[5]).length;i++){
                     views.push([vals[5][i], view_mode_list[i]])
@@ -170,7 +170,7 @@ odoo.define('home_page', function (require) {
             var result_quick = self.result_quick;
             for (var i = 0; i < result_quick.length; i++) {
                 var left_big_html_str = "<div class='col-xs-12 col-md-3 right_small_div_" + i + "'><h3>" +
-                    (result_quick[i][0].split(';'))[1] + "</h3><ul class='list-group right_small_ul_"+i+"'></ul></div>"
+                    (result_quick[i][0].split(';'))[1] + "</h3><ul class='list-group right_small_ul_" + i + "'></ul></div>";
                 self.$el.find('.right_div').append(left_big_html_str);
                 for (var j = 0; j < result_quick[i][1].length; j++) {
                     var left_html_str = $("<li  class='list-group-item oe_p oe_quick_link' oe_top_link_i='" + i + "' " +
@@ -201,7 +201,7 @@ odoo.define('home_page', function (require) {
         start: function () {
             var num = this.get('value');
             var self = this;
-            self.$el.append("<div id='main' class='main'></div>")
+            self.$el.append("<div id='main' class='main'></div>");
             /*首页分为三块  样式进行显示 分别是 数据统计  业务总览 实时报表 */
             var most_frame = this.three_part_qweb_render();
             new Model("home.page").call("get_action_url").then(function (result) {
@@ -219,4 +219,4 @@ odoo.define('home_page', function (require) {
         },
     });
     core.action_registry.add('home_page.homepage', HomePage);
-})
+});

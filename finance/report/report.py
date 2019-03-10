@@ -7,9 +7,9 @@ import math
 
 class ActionReportPickingWrapped(report_sxw.rml_parse):
 
-    def __init__(self, cr, uid, name, context=None):
+    def __init__(self,  name, context=None):
         super(ActionReportPickingWrapped, self).__init__(
-            cr, uid, name, context=context)
+             name, context=context)
         self.localcontext.update({
             'paginate': self._paginate,
             'rmb_upper': self._rmb_upper,
