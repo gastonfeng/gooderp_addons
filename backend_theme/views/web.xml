@@ -35,7 +35,7 @@
               name="App Drawer - Web Client"
               >
 
-        <xpath expr="//div[@class='o_sub_menu']" position="replace" />
+        <xpath expr="//div[hasclass('o_sub_menu')]" position="replace"/>
 
         <xpath expr="//t[@t-set='head']" position="inside">
             <meta charset="utf-8" />
@@ -117,7 +117,7 @@
             </header>
 
         </xpath>
-        <xpath expr="//div[@class='o_main_content']" position="before" >
+        <xpath expr="//div[hasclass('o_main_content')]" position="before">
           <t t-call="backend_theme.left_menu"/>
         </xpath>
     </template>
@@ -130,9 +130,9 @@
         <xpath expr="//a[@class='o_sub_menu_logo']" position="replace" >
         </xpath>
 
-        <xpath expr="//div[@class='o_sub_menu_footer']" position="replace" />
+        <xpath expr="//div[hasclass('o_sub_menu_footer')]" position="replace"/>
 
-        <xpath expr="//div[@class='o_sub_menu_content']/t" position="replace">
+        <xpath expr="//div[hasclass('o_sub_menu_content')]/t" position="replace">
 
             <t t-foreach="menu_data['children']" t-as="menu">
 			    <ul style="display: none" class="oe_secondary_menu nav navbar-nav" t-att-data-menu-parent="menu['id']">
